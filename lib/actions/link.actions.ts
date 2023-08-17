@@ -13,7 +13,7 @@ export async function addLink(name: string, src: string) {
       data: {
         name,
         src,
-        userId: currentUser?.id,
+        groupId: "",
       },
     });
   } catch (error: any) {
@@ -29,7 +29,7 @@ export async function fetchLinks() {
     }
     const links = await prisma.link.findMany({
       where: {
-        userId: currentUser?.id,
+        groupId: "",
       },
     });
     return links;
