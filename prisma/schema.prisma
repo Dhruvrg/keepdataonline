@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?  @unique
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  accounts Account[]
+  groups   Group[]
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Group {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  name   String?
+  image  String
+  users  String[] @db.ObjectId
+  userId String   @db.ObjectId
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documents Document[]
+  links     Link[]
+  notes     Note[]
+  charts    Chart[]
+}
+
+model Document {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String?
+  src     String?
+  groupId String  @db.ObjectId
+
+  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+}
+
+model Link {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String?
+  src     String?
+  groupId String  @db.ObjectId
+
+  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+}
+
+model Note {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String?
+  src     String?
+  groupId String  @db.ObjectId
+
+  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+}
+
+model Chart {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String?
+  groupId String  @db.ObjectId
+
+  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
+}
