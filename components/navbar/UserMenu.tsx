@@ -50,9 +50,18 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             <div className="absolute bg-gray-800 rounded-md mt-[5vh] right-4 md:right-44 flex flex-col items-center">
               <MenuItem
                 label="Profile"
-                onClick={() => router.push("/profile")}
+                onClick={() => {
+                  toggleOpen();
+                  router.push("/profile");
+                }}
               />
-              <MenuItem label="Logout" onClick={() => signOut()} />
+              <MenuItem
+                label="Logout"
+                onClick={() => {
+                  toggleOpen();
+                  signOut();
+                }}
+              />
             </div>
           ) : (
             <div className="md:hidden absolute bg-gray-800 rounded-md mt-[5vh] right-4 flex flex-col items-center">

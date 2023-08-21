@@ -1,15 +1,15 @@
 import { create } from "zustand";
 
-interface AddLinkModalStore {
+interface AddNoteModalStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
-const useAddLinkModal = create<AddLinkModalStore>((set) => ({
+const useAddNoteModal = create<AddNoteModalStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
 
-export default useAddLinkModal;
+export default useAddNoteModal;

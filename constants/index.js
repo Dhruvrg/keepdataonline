@@ -1,9 +1,5 @@
 export const sidebarLinks = [
   {
-    route: "/",
-    label: "Home",
-  },
-  {
     route: "/document",
     label: "Documents",
   },

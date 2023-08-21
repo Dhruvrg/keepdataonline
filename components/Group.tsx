@@ -8,8 +8,10 @@ import { toast } from "react-hot-toast";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import GroupCard from "./card/GroupCard";
 import { Group } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 const Group = () => {
+  const router = useRouter();
   const sideBarModal = useSideBarModal();
   const createGroupModal = useCreateGroupModal();
   const [groups, setGroups] = useState<Group[]>([]);
@@ -17,8 +19,12 @@ const Group = () => {
   useEffect(() => {
     const getGroups = async () => {
       try {
-        const data = await fetchGroups();
+        const data: any = await fetchGroups();
         setGroups(data);
+        const id = data[0]?.id;
+        if (id !== undefined && data.length) {
+          router.push(`/link/${id}`);
+        }
       } catch (error) {
         toast.error("Something went wrong!");
       }

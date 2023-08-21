@@ -73,8 +73,8 @@ model Link {
 
 model Note {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  name    String?
-  src     String?
+  title   String?
+  desc    String?
   groupId String  @db.ObjectId
 
   group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)

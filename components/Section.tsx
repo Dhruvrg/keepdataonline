@@ -8,7 +8,6 @@ import useSideBarModal from "@/hooks/useSideBarModal";
 const Section = () => {
   const pathname = usePathname();
   const sideBarModal = useSideBarModal();
-
   if (!sideBarModal.isOpen) {
     return;
   }
@@ -19,9 +18,15 @@ const Section = () => {
         const isActive =
           (pathname?.includes(link.route) && link.route.length > 1) ||
           pathname === link.route;
+        const id = pathname?.split("/")?.reverse()[0];
+        let updatedUrl = link.route + "/" + id;
+
+        if (link.route === "/") {
+          updatedUrl = "/";
+        }
 
         return (
-          <Link href={link.route} key={link.label}>
+          <Link href={updatedUrl} key={link.label}>
             <div
               className={`${
                 isActive &&

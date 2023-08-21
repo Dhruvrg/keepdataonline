@@ -7,7 +7,7 @@ export async function createGroup(name: string) {
   try {
     const currentUser = await getCurrentUser();
     if (!currentUser) {
-      throw new Error("You need to Login");
+      return;
     }
     await prisma.group.create({
       data: {
@@ -26,7 +26,7 @@ export async function fetchGroups() {
   try {
     const currentUser = await getCurrentUser();
     if (!currentUser) {
-      throw new Error("You need to Login");
+      return;
     }
     const groups = await prisma.group.findMany({
       where: {
@@ -36,5 +36,21 @@ export async function fetchGroups() {
     return groups;
   } catch (error: any) {
     throw new Error(`Failed to fetch group: ${error.message}`);
+  }
+}
+
+export async function deleteGroup(id: string) {
+  try {
+    if (id === undefined || !id || typeof id !== "string") {
+      throw new Error("Invalid ID");
+    }
+
+    await prisma.group.deleteMany({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error: any) {
+    throw new Error(`Failed to delete group: ${error.message}`);
   }
 }

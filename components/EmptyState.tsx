@@ -12,7 +12,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   subtitle = "Try changing or removing some of your filters.",
 }) => {
   return (
-    <div className="h-[90vh] md:w-[70vw] flex justify-center items-center">
+    <div className="h-[90vh] ml-5 md:ml-0 md:w-[70vw] flex justify-center items-center">
       <Heading center title={title} subtitle={subtitle} />
     </div>
   );

@@ -3,14 +3,15 @@
 import useAddLinkModal from "@/hooks/useAddLinkModel";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 import Modal from "./Modal";
 import Input from "../inputs/input";
 import { addLink } from "@/lib/actions/link.actions";
 
-const AddLinkModel = () => {
+const AddLinkModal = () => {
+  const pathname = usePathname();
   const addLinkModal = useAddLinkModal();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -30,9 +31,11 @@ const AddLinkModel = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
     try {
-      await addLink(data.name, data.src);
+      const id = pathname?.split("/")?.reverse()[0];
+      if (id === undefined) return;
+      await addLink(data.name, data.src, id);
       addLinkModal.onClose();
-      toast.success("Group created!");
+      toast.success("Link Added Successfully!");
       router.refresh();
       reset();
     } catch (error) {
@@ -76,4 +79,4 @@ const AddLinkModel = () => {
   );
 };
 
-export default AddLinkModel;
+export default AddLinkModal;

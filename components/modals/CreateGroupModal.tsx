@@ -10,7 +10,7 @@ import Modal from "./Modal";
 import Input from "../inputs/input";
 import { createGroup } from "@/lib/actions/group.actions";
 
-const CreateModel = () => {
+const CreateModal = () => {
   const createGroupModal = useCreateGroupModal();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -65,4 +65,4 @@ const CreateModel = () => {
   );
 };
 
-export default CreateModel;
+export default CreateModal;

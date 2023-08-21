@@ -6,10 +6,7 @@ import getCurrentUser from "@/lib/actions/getCurrentUser";
 import Navbar from "@/components/navbar/Navbar";
 import Group from "@/components/Group";
 import Section from "@/components/Section";
-import LoginModal from "@/components/modals/LoginModal";
-import RegisterModal from "@/components/modals/RegisterModal";
-import CreateGroupModel from "@/components/modals/CreateGroupModel";
-import AddLinkModel from "@/components/modals/AddLinkModel";
+import ModalsProvider from "@/providers/ModalsProvider";
 
 export const metadata = {
   title: "KeepDataOnline",
@@ -32,10 +29,7 @@ export default async function RootLayout({
       <body className={font.className}>
         <ClientOnly>
           <ToasterProvider />
-          <LoginModal />
-          <RegisterModal />
-          <CreateGroupModel />
-          <AddLinkModel />
+          <ModalsProvider currentUser={currentUser} />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         <main className="flex">

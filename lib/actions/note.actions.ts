@@ -6,48 +6,48 @@ interface IParams {
   id?: string;
 }
 
-export async function addLink(name: string, src: string, id: string) {
+export async function addNote(title: string, desc: string, id: string) {
   try {
     if (id === undefined) return;
-    await prisma.link.create({
+    await prisma.note.create({
       data: {
-        name,
-        src,
+        title,
+        desc,
         groupId: id,
       },
     });
   } catch (error: any) {
-    throw new Error(`Failed to add link: ${error.message}`);
+    throw new Error(`Failed to add note: ${error.message}`);
   }
 }
 
-export async function fetchLinks(params: IParams) {
+export async function fetchNotes(params: IParams) {
   try {
     const { id } = params;
     if (id === undefined) return;
-    const links = await prisma.link.findMany({
+    const notes = await prisma.note.findMany({
       where: {
         groupId: id[0],
       },
     });
-    return links;
+    return notes;
   } catch (error: any) {
-    throw new Error(`Failed to fetch links: ${error.message}`);
+    throw new Error(`Failed to fetch notes: ${error.message}`);
   }
 }
 
-export async function deleteLink(id: string) {
+export async function deleteNote(id: string) {
   try {
     if (!id || typeof id !== "string") {
       throw new Error("Invalid ID");
     }
 
-    await prisma.link.deleteMany({
+    await prisma.note.deleteMany({
       where: {
         id: id,
       },
     });
   } catch (error: any) {
-    throw new Error(`Failed to delete link: ${error.message}`);
+    throw new Error(`Failed to delete note: ${error.message}`);
   }
 }
