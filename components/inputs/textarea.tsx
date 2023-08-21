@@ -27,7 +27,7 @@ const TextArea: React.FC<InputProps> = ({
         {...register(id, { required })}
         placeholder=" "
         rows={13}
-        className={`peer w-full p-4 pt-6 font-light bg-[#232429] border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
+        className={`peer w-full p-4 pt-10 font-light bg-[#232429] border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed
           ${
             errors[id]
               ? "border-rose-500 focus:border-rose-500"

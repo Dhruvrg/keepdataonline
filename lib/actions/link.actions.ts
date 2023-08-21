@@ -51,3 +51,14 @@ export async function deleteLink(id: string) {
     throw new Error(`Failed to delete link: ${error.message}`);
   }
 }
+
+export async function updateLink(name: string, src: string, id: string) {
+  try {
+    await prisma.link.update({
+      where: { id: id },
+      data: { name, src },
+    });
+  } catch (error: any) {
+    throw new Error(`Failed to update link: ${error.message}`);
+  }
+}

@@ -54,3 +54,14 @@ export async function deleteGroup(id: string) {
     throw new Error(`Failed to delete group: ${error.message}`);
   }
 }
+
+export async function updateGroup(name: string, image: string, id: string) {
+  try {
+    await prisma.group.update({
+      where: { id: id },
+      data: { name, image },
+    });
+  } catch (error: any) {
+    throw new Error(`Failed to update group: ${error.message}`);
+  }
+}

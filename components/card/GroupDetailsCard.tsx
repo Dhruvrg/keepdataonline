@@ -1,5 +1,6 @@
 "use client";
 
+import useEditGroupModal from "@/hooks/useEditGroupModal";
 import { deleteGroup } from "@/lib/actions/group.actions";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -14,6 +15,7 @@ interface GroupProps {
 
 const GroupDetailsCard: React.FC<GroupProps> = ({ id, name, image }) => {
   const router = useRouter();
+  const editGroupModal = useEditGroupModal();
 
   const removeGroup = async () => {
     try {
@@ -23,6 +25,11 @@ const GroupDetailsCard: React.FC<GroupProps> = ({ id, name, image }) => {
     } catch (error) {
       toast.error("Something went wrong!");
     }
+  };
+
+  const editGroup = () => {
+    editGroupModal.setData({ id, name, image });
+    editGroupModal.onOpen();
   };
 
   return (
@@ -37,7 +44,7 @@ const GroupDetailsCard: React.FC<GroupProps> = ({ id, name, image }) => {
         />
         <div className="font-bold text-lg">{name}</div>
       </div>
-      <button onClick={() => null}>
+      <button onClick={editGroup}>
         <AiOutlineEdit className="mx-4 text-2xl md:text-3xl" />
       </button>
       <button onClick={removeGroup}>

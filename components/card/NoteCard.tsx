@@ -1,5 +1,6 @@
 "use client";
 
+import useEditNoteModal from "@/hooks/useEditNoteModal";
 import { deleteNote } from "@/lib/actions/note.actions";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -18,6 +19,7 @@ interface NoteProps {
 }
 
 const NoteCard: React.FC<NoteProps> = ({ id, title, desc }) => {
+  const editNoteModal = useEditNoteModal();
   const [copied, setCopied] = useState("");
   const router = useRouter();
 
@@ -38,14 +40,9 @@ const NoteCard: React.FC<NoteProps> = ({ id, title, desc }) => {
     }
   };
 
-  const editNote = async () => {
-    try {
-      // await editLink(id,title,desc);
-      toast.success("Note Updated Successfully!");
-      router.refresh();
-    } catch (error) {
-      toast.error("Something went wrong!");
-    }
+  const editNote = () => {
+    editNoteModal.setData({ id, title, desc });
+    editNoteModal.onOpen();
   };
 
   return (

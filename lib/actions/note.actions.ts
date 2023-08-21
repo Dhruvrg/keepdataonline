@@ -51,3 +51,14 @@ export async function deleteNote(id: string) {
     throw new Error(`Failed to delete note: ${error.message}`);
   }
 }
+
+export async function updateNote(title: string, desc: string, id: string) {
+  try {
+    await prisma.note.update({
+      where: { id: id },
+      data: { title, desc },
+    });
+  } catch (error: any) {
+    throw new Error(`Failed to update note: ${error.message}`);
+  }
+}

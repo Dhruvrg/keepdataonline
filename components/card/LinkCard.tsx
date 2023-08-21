@@ -1,5 +1,6 @@
 "use client";
 
+import useEditLinkModal from "@/hooks/useEditLinkModel";
 import { deleteLink } from "@/lib/actions/link.actions";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
@@ -13,7 +14,7 @@ interface LinkProps {
 
 const LinkCard: React.FC<LinkProps> = ({ id, name, src }) => {
   const router = useRouter();
-
+  const editLinkModal = useEditLinkModal();
   const removeLink = async () => {
     try {
       await deleteLink(id);
@@ -24,14 +25,9 @@ const LinkCard: React.FC<LinkProps> = ({ id, name, src }) => {
     }
   };
 
-  const editLink = async () => {
-    try {
-      // await editLink(id,name,src);
-      toast.success("Link Updated Successfully!");
-      router.refresh();
-    } catch (error) {
-      toast.error("Something went wrong!");
-    }
+  const editLink = () => {
+    editLinkModal.setData({ id, name, src });
+    editLinkModal.onOpen();
   };
 
   return (
