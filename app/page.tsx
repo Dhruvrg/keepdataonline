@@ -1,3 +1,10 @@
+import EmptyState from "@/components/EmptyState";
+
 export default function Home() {
-  return <h1>Hello World</h1>;
+  return (
+    <EmptyState
+      title="Welcome To KeepDataOnline"
+      subtitle="Create A Group To Store Data"
+    />
+  );
 }

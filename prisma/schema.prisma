@@ -8,13 +8,14 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
   name           String?
-  email          String?  @unique
+  email          String?   @unique
   image          String?
+  emailVerified  DateTime?
   hashedPassword String?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   accounts Account[]
   groups   Group[]
@@ -50,7 +51,6 @@ model Group {
   documents Document[]
   links     Link[]
   notes     Note[]
-  charts    Chart[]
 }
 
 model Document {
@@ -75,14 +75,6 @@ model Note {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   title   String?
   desc    String?
-  groupId String  @db.ObjectId
-
-  group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)
-}
-
-model Chart {
-  id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  name    String?
   groupId String  @db.ObjectId
 
   group Group @relation(fields: [groupId], references: [id], onDelete: Cascade)

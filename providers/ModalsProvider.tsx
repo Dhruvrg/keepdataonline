@@ -10,6 +10,8 @@ import { SafeUser } from "@/types";
 import EditLinkModal from "@/components/modals/EditLinkModal";
 import EditNoteModal from "@/components/modals/EditNoteModal";
 import EditGroupModal from "@/components/modals/EditGroupModal";
+import AddDocumentModal from "@/components/modals/AddDocumentModal";
+import EditDocumentModal from "@/components/modals/EditDocumentModal";
 
 interface ModalsProviderProps {
   currentUser?: SafeUser | null;
@@ -23,10 +25,12 @@ const ModalsProvider: React.FC<ModalsProviderProps> = ({ currentUser }) => {
       <CreateGroupModal />
       <AddLinkModal />
       <AddNoteModal />
+      <AddDocumentModal />
       <EditUserModel currentUser={currentUser} />
       <EditLinkModal />
       <EditNoteModal />
       <EditGroupModal />
+      <EditDocumentModal />
     </>
   );
 };

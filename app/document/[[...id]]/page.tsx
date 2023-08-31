@@ -1,7 +1,19 @@
-const page = () => {
-  const url =
-    "https://res.cloudinary.com/dschxieoo/image/upload/v1692450556/lbkus5k1ucmsd2t6du25.pdf";
-  return <div>Documents</div>;
+import ClientOnly from "@/components/ClientOnly";
+import { fetchDocuments } from "@/lib/actions/document.actions";
+import ShowDocument from "@/components/ShowDocument";
+
+interface IParams {
+  id?: string;
+}
+
+const page = async ({ params }: { params: IParams }) => {
+  const Documents: any = await fetchDocuments(params);
+
+  return (
+    <ClientOnly>
+      <ShowDocument documents={Documents} />
+    </ClientOnly>
+  );
 };
 
 export default page;

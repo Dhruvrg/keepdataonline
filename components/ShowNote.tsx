@@ -22,7 +22,7 @@ const ShowNote: React.FC<ShowNoteProps> = ({ notes }) => {
   }
 
   return (
-    <div>
+    <>
       <div className="flex flex-wrap justify-evenly px-[1vw] gap-y-2 py-2 md:gap-y-10 md:py-10">
         {notes?.map((note: any) => (
           <NoteCard
@@ -34,7 +34,7 @@ const ShowNote: React.FC<ShowNoteProps> = ({ notes }) => {
         ))}
       </div>
       <AddButton onClick={addNoteModal.onOpen} />
-    </div>
+    </>
   );
 };
 

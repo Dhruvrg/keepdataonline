@@ -12,7 +12,7 @@ export const sidebarLinks = [
     label: "Notes",
   },
   {
-    route: "/chart",
-    label: "Charts",
+    route: "/profile",
+    label: "Profile",
   },
 ];

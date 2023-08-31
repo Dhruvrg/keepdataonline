@@ -22,7 +22,7 @@ const ShowLink: React.FC<ShowLinkProps> = ({ links }) => {
   }
 
   return (
-    <div>
+    <>
       <div className="flex flex-col md:gap-4 gap-2 md:py-4 py-2">
         {links?.map((link: any) => (
           <LinkCard
@@ -34,7 +34,7 @@ const ShowLink: React.FC<ShowLinkProps> = ({ links }) => {
         ))}
       </div>
       <AddButton onClick={addLinkModal.onOpen} />
-    </div>
+    </>
   );
 };
 

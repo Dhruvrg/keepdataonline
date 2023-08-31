@@ -21,9 +21,8 @@ const Section = () => {
         const id = pathname?.split("/")?.reverse()[0];
         let updatedUrl = link.route + "/" + id;
 
-        if (link.route === "/") {
-          updatedUrl = "/";
-        }
+        if (link.route === "/") updatedUrl = "/";
+        if (link.route === "/profile") updatedUrl = "/profile";
 
         return (
           <Link href={updatedUrl} key={link.label}>

@@ -23,7 +23,7 @@ const Group = () => {
         setGroups(data);
         const id = data[0]?.id;
         if (id !== undefined && data.length) {
-          router.push(`/link/${id}`);
+          router.push(`/document/${id}`);
         }
       } catch (error) {
         toast.error("Something went wrong!");

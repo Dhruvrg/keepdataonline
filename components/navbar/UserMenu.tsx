@@ -47,14 +47,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       {isOpen && (
         <>
           {currentUser ? (
-            <div className="absolute bg-gray-800 rounded-md mt-[5vh] right-4 md:right-44 flex flex-col items-center">
-              <MenuItem
-                label="Profile"
-                onClick={() => {
-                  toggleOpen();
-                  router.push("/profile");
-                }}
-              />
+            <div className="absolute bg-gray-800 rounded-md mt-[5vh] right-4 md:right-32 flex flex-col items-center">
               <MenuItem
                 label="Logout"
                 onClick={() => {
