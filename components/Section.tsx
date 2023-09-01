@@ -13,7 +13,7 @@ const Section = () => {
   }
 
   return (
-    <section className="bg-[#161B21] border-l-[1px] border-t-[1px] border-gray-800 py-1">
+    <section className="bg-[#161B21] border-l-[1px] border-t-[1px] border-gray-800 py-1 z-10">
       {sidebarLinks.map((link) => {
         const isActive =
           (pathname?.includes(link.route) && link.route.length > 1) ||
